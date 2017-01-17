@@ -46,6 +46,8 @@
 
               $("#spanConditions").text(conditionsCapitalLetter);
 
+              backgroundColor(temp);
+
             }
         }); //End of ajax call to get weather
 
@@ -55,6 +57,26 @@
   
   }); //jQuery Self Ivoked
 
+  function backgroundColor(temp){
+    switch (temp <= 100){
+      case temp < 0: document.body.style.backgroundColor = "#0049bf";
+        break;
+      case temp < 10: document.body.style.backgroundColor = "#4586ef";;
+        break;
+      case temp < 20: document.body.style.backgroundColor = "#76e8fc";;
+        break;
+      case temp < 30: document.body.style.backgroundColor = "#efe745";;
+        break;
+      case temp < 40: document.body.style.backgroundColor = "#efae45";;
+        break;
+      case temp < 50: document.body.style.backgroundColor = "#ef6445";;
+        break;
+      case temp < 60: document.body.style.backgroundColor = "#ff1e1e";;
+        break;
+      case temp < 99: document.body.style.backgroundColor = "#ff1e1e";;
+        break;
+    }
+  }
     
   function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
