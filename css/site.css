@@ -1,0 +1,35 @@
+* {
+	margin:0px;
+	border:0px;
+	font-family: 'Fira Sans Extra Condensed', sans-serif;
+}
+
+div > h1, .row {
+	text-align: center;
+}
+
+h1 {
+	font-size: 5em;
+	margin-bottom: 30px;
+}
+
+.row {
+	margin-top:25px;
+	margin-bottom:25px;
+}
+
+span {
+	font-size: 4em;
+}
+
+#spanTempF {
+	display: none;
+}
+
+button {
+	margin: 10px;
+}
+
+#test {
+	vertical-align: middle;
+}
