@@ -9,7 +9,7 @@
         var city = response.city;
         console.log(city);
         if (city == "Shikun `amalya"){
-        var city = "Tel Aviv";
+        var city = "Rosh Ha'Aiyn";
         }
         console.log(city);
 
@@ -20,7 +20,11 @@
           $.ajax({
             type: "GET",
             url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=6b67e72940c793295a415e3834fa7d85&units=metric',
-            error: function (err) {alert("Error: " + err.status + ", " + err.statusText);},
+            error: function (err) {
+              
+              alert("Error: " + err.status + ", " + err.statusText);
+
+              }, // end of ajax error
             success: function (response) {        
               
               var arr = response;
@@ -50,7 +54,7 @@
               $("#spanConditions").text(weatherCapitalLetter);
 
             }
-        }); //End of ajax call to get weather
+        }); //End of success ajax call to get weather
 
         }, 
 
@@ -101,7 +105,23 @@
 
     if(conditionsDesc == 'clear sky'){
       sectionWeatherLogo.innerHTML = "<img src='assets/images/sun.png'>";
-    }
+    };
+    if (conditionsDesc == 'few clouds'){
+      sectionWeatherLogo.innerHTML = "<img src='assets/images/cloudy.png'>";
+    };
+    if (conditionsDesc == 'mist'){
+      sectionWeatherLogo.innerHTML = "<img src='assets/images/cloudy.png'>";
+    };
+    if (conditionsDesc == 'scattered clouds'){
+      sectionWeatherLogo.innerHTML = "<img src='assets/images/cloudy.png'>";
+    };
+    if (conditionsDesc == 'broken clouds'){
+      sectionWeatherLogo.innerHTML = "<img src='assets/images/cloudy.png'>";
+    };
+    if (conditionsDesc == 'shower rain'){
+      sectionWeatherLogo.innerHTML = "<img src='assets/images/rain.png'>";
+    };
+
   }
     
   function capitalizeFirstLetter(string) {
