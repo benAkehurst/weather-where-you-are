@@ -31,39 +31,48 @@
     </head>
     <body>
 		
-		<div class="container-fluid">
+		<!-- This section is hidden by deafult, and appears if there is an error with the ajax call -->
+    	<div class="container-fluid" id="divErrorScreen">
+	    	<div class="row">
+			    	<div class="col-xs-12">
 
+			    		<h1 id=errorCode></h1>
+			    		<h2>Something seems to have gone wrong...</h2>
+			    		<h3>Sorry about that. Here's a video of kitten</h3>
+	    				<video id="errorVideo" autoplay loop muted>
+	    					<source src="assets/video/kitten.mp4" type="video/mp4">
+	    				</video>
+
+			    	</div>
+			    </div>
+	    	</div>
+
+		<!-- By default, this is how the page appears to the user -->
+		<div class="container-fluid" id="divSuccessScreen">
 	    	<main>
-
 	    		<section id=sectionTitle>
-
 	    			<div class="divTitle">
 	    				
 	    				<h1>What's the weather like where you are?</h1>
 
 	    			</div>
-
 	    		</section>
 
 	    		<section id="sectionCurrentWeather">
-
 					<div class="row">
-
 						<div class="col-xs-12">
 						
 		    				<span id="spanLocation"></span>
 
 		    			</div>
-
 		    		</div>
 
 		    		<div class="row">
-
 		    			<div class="col-xs-12">
-
+							
 							<span id="spanTempC"></span>
 							<span id="spanTempF"></span>
-			    		
+						
 						</div>
 
 						<button class="btn btn-success btn-lg" id="buttonC">&degC</button>
@@ -72,58 +81,41 @@
 					</div>
 
 					<div class="row">
-
 						<div class="col-xs-12">
 						
 							<span id="spanConditions"></span>
 
-						<div class="col-xs-12">
-
+						</div>
 					</div>
 
 		    		<div class="row">
-
 		    			<div class="col-xs-12">
 
 		    				<span id="spanWeatherIcon"></span>
 
 		    			</div>
-
 		    		</div>
 
 		    		<div class="row">
-
 			    		<div class="col-xs-12">
 
-			    			<span id="sectionWeatherLogo">HERE IS THE WEATHER LOGO</span>
+			    			<span id="sectionWeatherLogo"></span>
 
 			    		</div>
-
 			    	</div>
 
 	    	</main> <!-- End of if the app works via ajax -->
-
-	    	<div class="container-fluid" id="errorDiv">
-
-	    		<div class="row">
-
-			    		<div class="col-xs-12">
-
-			    			<h1 id=errorCode></h1>
-	    					<video id="errorVideo"></video>
-
-			    		</div>
-
-			    	</div>
-
-	    	</div>
 
 	    </div> <!-- End of main container DIV -->
 
     		<footer>
     			
     			<div class="container-fluid">
-    				
+    				<div class="row">
+
+    					<h4>Fork Me on <a href="https://github.com/benAkehurst">Github</a></h4>
+    					
+    				</div>
     			</div>
 
     		</footer>

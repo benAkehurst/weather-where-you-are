@@ -3,28 +3,34 @@
   "use setrict";
 
   $(function(){
-        
+      
+      // This get call uses an API that gets the users IP address and returns the location of the user
       $.get("http://ipinfo.io/", function(response) {
 
         var city = response.city;
-        console.log(city);
+        
         if (city == "Shikun `amalya"){
-        var city = "Rosh Ha'Aiyn";
+          var city = "Rosh Ha'Aiyn";
         }
-        console.log(city);
-
+        
         var country = response.country;
 
         $("#spanLocation").text(city);
 
+          // We then use AJAX to call the open weather map API to get the weather conditions in the users city
           $.ajax({
             type: "GET",
             url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=6b67e72940c793295a415e3834fa7d85&units=metric',
             error: function (err) {
-              
-              alert("Error: " + err.status + ", " + err.statusText);
+
+              // If the API call to the weather fails, then the page displays an error
+              $("#divSuccessScreen").hide();
+              $("#divErrorScreen").show();
+              $("#errorCode").HTML(err.status);
 
               }, // end of ajax error
+
+              // If the API call is successful, then the page is displayed with the current weather conditions 
             success: function (response) {        
               
               var arr = response;
@@ -62,9 +68,16 @@
   
   }); //jQuery Self Ivoked
 
+  // This function will change the background color of the page based on the current temperature
   function backgroundColor(temp){
     switch (temp <= 100){
-      case temp < 0: document.body.style.backgroundColor = "##092b60";
+      case temp < -15: document.body.style.backgroundColor = "#0b1930";
+        break;
+      case temp < -10: document.body.style.backgroundColor = "#071a38";
+        break;
+      case temp < -5: document.body.style.backgroundColor = "#052a66";
+        break;
+      case temp < 0: document.body.style.backgroundColor = "#092b60";
         break;
       case temp < 5: document.body.style.backgroundColor = "#1a4b9b";;
         break;
@@ -99,12 +112,19 @@
     }
   }
 
+  // This function will change the weather logo based on the current weather conditions
   function conditionsIcon(conditionsDesc){
+
+    var date = new Date();
+    var hour = date.getHours();
 
     var sectionWeatherLogo = document.getElementById('sectionWeatherLogo');
 
     if(conditionsDesc == 'clear sky'){
-      sectionWeatherLogo.innerHTML = "<img src='assets/images/sun.png'>";
+      sectionWeatherLogo.innerHTML = "<img src='assets/images/sun.png' class='sunIcon'>";
+    };
+    if(conditionsDesc == 'clear sky' && hour > 17){
+      sectionWeatherLogo.innerHTML = "<img src='assets/images/nightClear.png'>";
     };
     if (conditionsDesc == 'few clouds'){
       sectionWeatherLogo.innerHTML = "<img src='assets/images/cloudy.png'>";
@@ -121,20 +141,30 @@
     if (conditionsDesc == 'shower rain'){
       sectionWeatherLogo.innerHTML = "<img src='assets/images/rain.png'>";
     };
-
+    if (conditionsDesc == 'rain'){
+      sectionWeatherLogo.innerHTML = "<img src='assets/images/rain.png'>";
+    };
+    if (conditionsDesc == 'thunderstorm'){
+      sectionWeatherLogo.innerHTML = "<img src='assets/images/thunder.png'>";
+    };
+    if (conditionsDesc == 'snow'){
+      sectionWeatherLogo.innerHTML = "<img src='assets/images/snow.png'>";
+    };
   }
-    
+  
+  // This function make the first letter of the weather conditions into a capital letter
   function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  // This function returns a "degrees" symbol for display in the button 
   function ascii(a){ 
     return String.fromCharCode(a); 
   }
 
+  // This function converts the current temperature into Farenheit
   function convertToF(temp) {
         var fTempVal = parseInt((temp * (9 / 5))) + 32;
-        console.log(fTempVal);
         return fTempVal;
   }
 
